@@ -169,16 +169,27 @@ namespace TCP_Client_Server.View_Models
                         {
                             App.Current.Dispatcher.Invoke(new Action(() =>
                             {
-                                if (client!=null)
+                                if (client==null)
                                 {
-                                    client = new TcpClient(MainWindows.ServerIpTextbox.Text, int.Parse(MainWindows.ServerPortTextBox.Text));
-                                    App.Current.Dispatcher.Invoke(() =>
+                                    try
                                     {
-                                        MainWindows.ChatScreenTextbox.Text += "\n Client connected.";
-                                    });
-                                    return;
+
+                                        client = new TcpClient(MainWindows.ServerIpTextbox.Text, int.Parse(MainWindows.ServerPortTextBox.Text));
+                                        App.Current.Dispatcher.Invoke(() =>
+                                        {
+                                            MainWindows.ChatScreenTextbox.Text += "\n Client connected.";
+                                        });
+                                        return;
+
+                                    }
+                                    catch (Exception)
+                                    {
+
+
+                                    }
                                 }
 
+                          
                             }));
 
                     
@@ -277,15 +288,15 @@ namespace TCP_Client_Server.View_Models
 
         private void ClientStart(TcpClient client_)
         {
-                TcpClient client = (TcpClient)client_;
             try
             {
-
+                    TcpClient client = (TcpClient)client_;
                 if (client != null)
                 {
-                    byte[] bytes = new byte[1024];
 
+                    byte[] bytes = new byte[1024];
                     clientStream = client.GetStream();
+
 
                     int i;
 
@@ -304,11 +315,12 @@ namespace TCP_Client_Server.View_Models
                     clientStream.Close();
                     client.Close();
                 }
-
                 else
                 {
-                    MessageBox.Show($"First run server.");
+                    System.Windows.MessageBox.Show($"First run Server");
                 }
+
+
             }
             catch (Exception ex)
             {
