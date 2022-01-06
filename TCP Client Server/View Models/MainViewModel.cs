@@ -31,24 +31,19 @@ namespace TCP_Client_Server.View_Models
         public RelayCommand LoadedCommand { get; set; }
 
 
-        public string Receive;
-        public string TextToSend;
-
-
         bool changeposition = false;
 
         DispatcherTimer timer = new DispatcherTimer();
 
 
 
-
         public MainViewModel()
         {
+
+
             timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
 
             timer.Tick += Timer_Tick;
-
-
 
 
             LoadedCommand = new RelayCommand((sender) =>
