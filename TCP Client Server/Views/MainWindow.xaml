@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TCP_Client_Server" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title=" TCP Client and Server chat " Height="600" Width="600">
+        Title=" TCP Client and Server chat " Height="600" Width="600" Icon="chat.png">
 
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="Loaded">

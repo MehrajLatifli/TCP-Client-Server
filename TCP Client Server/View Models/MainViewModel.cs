@@ -34,23 +34,11 @@ namespace TCP_Client_Server.View_Models
         public string Receive;
         public string TextToSend;
 
-        string ip_address = string.Empty;
-        int port = 0;
-
-        string chat = string.Empty;
-        string message = string.Empty;
-        StreamReader reader;
-        StreamWriter writer;
 
         bool changeposition = false;
 
-        object argument = new object();
-
         DispatcherTimer timer = new DispatcherTimer();
 
-
-        //int threadcount = 1001;
-        //public Thread[] threads = new Thread[1001];
 
 
 
@@ -103,6 +91,8 @@ namespace TCP_Client_Server.View_Models
                                 server = new TcpListener(IPAddress.Parse(MainWindows.ServerIpTextbox.Text), int.Parse(MainWindows.ServerPortTextBox.Text));
 
                                 MainWindows.ChatScreenTextbox.Text += "\n Started server.";
+
+                                MainWindows.Title = "Server";
 
                             }));
 
@@ -178,6 +168,8 @@ namespace TCP_Client_Server.View_Models
                                         App.Current.Dispatcher.Invoke(() =>
                                         {
                                             MainWindows.ChatScreenTextbox.Text += "\n Client connected.";
+
+                                            MainWindows.Title = "Client";
                                         });
                                         return;
 
@@ -391,13 +383,6 @@ namespace TCP_Client_Server.View_Models
                 MainWindows.ClientIpTextbox.Text = "127.0.0.1";
                 MainWindows.ClientPortTextbox.Text = "8081";
 
-                ip_address = MainWindows.ClientIpTextbox.Text;
-
-                port = int.Parse(MainWindows.ClientPortTextbox.Text);
-
-                chat = MainWindows.ChatScreenTextbox.Text;
-
-                message = MainWindows.MessageTextBox.Text;
             }));
 
         }
